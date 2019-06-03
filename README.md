@@ -3,4 +3,4 @@
 
 Feel free to open an ***issue*** if you find errors
 
-These notes are free, but I don't refuse any donations https://paypal.me/machine1104
+These notes are free, but I don't refuse any donations `https://paypal.me/machine1104`
