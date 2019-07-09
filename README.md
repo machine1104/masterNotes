@@ -3,4 +3,8 @@
 
 Feel free to open an ***issue*** if you find errors
 
-These notes are free, but I don't refuse donations https://paypal.me/machine1104
+These notes are free, but I don't refuse donations
+
+| PAYPAL        | BITCOIN           | ETHEREUM        |
+| ------------- |:-------------:|:-----:|
+| https://paypal.me/machine1104      | ![btc-qr](https://i.imgur.com/YNKnDBKm.png) | ![eth-qr](https://i.imgur.com/i1jojCfm.png) |
