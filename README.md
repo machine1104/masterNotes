@@ -1,9 +1,9 @@
-# appuntiTriennale
-**Questa repository contiene gli appunti presi durante i "3" anni di studi in Ingegneria Informatica presso La Sapienza**
+# MasterNotes
+**This repository contains notes taken during Engineering in Computer Science Master Degree at La Sapienza**
 
-Se trovate errori negli appunti non fatevi problemi a notificarli aprendo una ***issue***
+Feel free to open an ***issue*** if you find errors
 
-Gli appunti sono gratuiti, ma non rifiuto donazioni:
+These notes are free, but I don't refuse donations
 
 | PAYPAL        | BITCOIN           | ETHEREUM        |
 | ------------- |:-------------:|:-----:|
