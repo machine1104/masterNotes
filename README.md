@@ -1,10 +1,17 @@
-# MasterNotes
-**This repository contains notes taken during Engineering in Computer Science Master Degree at La Sapienza**
+# appuntiTriennale
+**Questa repository contiene gli appunti presi durante i "3" anni di studi in Ingegneria Informatica presso La Sapienza**
 
-Feel free to open an ***issue*** if you find errors
+Se trovate errori negli appunti non fatevi problemi a notificarli aprendo una ***issue***
 
-These notes are free, but I don't refuse donations
+Gli appunti sono gratuiti, ma non rifiuto donazioni:
 
 | PAYPAL        | BITCOIN           | ETHEREUM        |
 | ------------- |:-------------:|:-----:|
-| https://paypal.me/machine1104      | ![btc-qr](https://i.imgur.com/YNKnDBKm.png) | ![eth-qr](https://i.imgur.com/i1jojCfm.png) |
+| ![pp-qr](https://i.imgur.com/8dygmUnm.png) | ![btc-qr](https://i.imgur.com/YNKnDBKm.png) | ![eth-qr](https://i.imgur.com/i1jojCfm.png) |
+
+
+
+`
+NOTA: Non tutti gli appunti sono utili a passare l'esame.
+Alcuni sono stati inseriti solo per completezza.
+`
