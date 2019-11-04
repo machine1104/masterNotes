@@ -91,8 +91,16 @@ Here the resulting graphs.
     \centering
         \includegraphics[width=\textwidth]{dec-hw1-1649359.jpg}
 \end{figure}
+
 We can see that AES algorithm is the best in terms of efficiency in both encryption and decryption. The difference between operating modes doesn't influence much computing time and this means that CBC, besides being safer than ECB, doesn't effect encryption and decryption efficiency.
 Above 10MB, file size starts effecting the computation, showing an huge increment of computing time in all ciphers.
 
+\begin{figure}[h]
+    \centering
+        \includegraphics[width=\textwidth]{ratio-hw1-1649359.jpg}
+\end{figure}
+
+About the encryption/decryption ratio we can see that the main differences can be found on small size file where operating mode influences a lot the ratio: for example AES CBC has a ratio much higher than AES EBC on 100K files.
+We have an huge increment of ratio in all ciphers and operating modes for 10MB files that decreases again on 100MB files where becomes almost equal for all ciphers.
 
 \end{document}
