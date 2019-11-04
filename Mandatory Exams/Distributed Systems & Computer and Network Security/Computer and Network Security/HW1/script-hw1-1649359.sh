@@ -20,7 +20,7 @@ do
         for i in {1..$CICLI}
         do
             start=$(date +%s%N)
-            openssl $cipher -a -salt -pbkdf2 -in "$size.file" -out "$size.enc" -pass pass:$PASSWORD
+            openssl $cipher -a -salt -pbkdf2 -in "$size-hw1-1649359.file" -out "$size.enc" -pass pass:$PASSWORD
             runtime="$(($runtime+($(date +%s%N)-$start)))"       
            
         done
