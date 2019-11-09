@@ -15,5 +15,5 @@ do
             printf "Daje! Hai sprecato ben %dh:%dm:%ds. della tua vita\n" $(($runtime/3600)) $(($runtime%3600/60)) $(($runtime%60))     
             exit
         fi
-    done < "$dict-hw2-1649359.it"
+    done < "$dict-hw2-1649359.dic"
 done
