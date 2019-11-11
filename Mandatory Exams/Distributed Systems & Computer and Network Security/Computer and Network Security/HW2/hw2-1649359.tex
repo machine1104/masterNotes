@@ -1,0 +1,49 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+\usepackage{xcolor}
+\lstset{basicstyle=\ttfamily,
+  showstringspaces=false,
+  commentstyle=\color{red},
+  keywordstyle=\color{blue}
+}
+\usepackage{float}
+\title{Practing with an offline dictionary attack \\ HW2 - CNS Sapienza}
+
+\author{Edoardo Puglisi 1649359} 
+\date{04/11/2019}
+
+\begin{document}
+\lstset{breaklines=true}
+	
+\maketitle
+\tableofcontents
+\clearpage
+
+\section{Overview}
+The following experiment consists of simulating an offline dictionary attack on a ciphertext given by professor. We (the attackers) know the command used to encrypt the file (openssl enc aes-192-cbc -pbkdf2 -e -in <infile.txt> -out ciphertext.enc) and that the password is a single word that can be found on dictionary.
+
+\section{OFFLINE Dictionary Attack}
+Dictionary Attack is a particular tecnnique of bruteforce used to break a security mechanism such as a cipher involving words from dictionary as passphrase.
+The difference between normal bruteforce attack is that if the password (like our case) is a simple word, running time will be much smaller (still huge).
+
+
+\section{Code}
+Code description.
+\lstinputlisting[language=bash]{script-hw2-1649359.sh}
+The Bash code used for the "attack" is composed by two nested cycles: the first one iterates on different dictionaries (in this case english and italian), the second one iterates on every words of the given dictionary and decrypts the ciphertext with it. At each step the program checks if the decryption gave the right result: if the resulting plaintext is an ASCII file than the decryption was successful.
+
+\section{Results}
+It tooks 1 hour 49 minutes and 53 seconds to find the password used to encrypt the original text. The password is "learning".
+The experiment was lucky because the passphrase was on the first dictionary it checked and in the middle of it. In the worst case the right word could be in the last position of the last dictionary making the running time much higher.
+
+
+\end{document}
