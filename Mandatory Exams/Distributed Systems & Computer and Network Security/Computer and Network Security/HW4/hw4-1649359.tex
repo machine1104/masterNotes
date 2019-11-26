@@ -1,0 +1,145 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+\usepackage{xcolor}
+
+\usepackage{float}
+\title{My Crypto Libraries \\ HW4 - CNS Sapienza}
+
+\author{Edoardo Puglisi 1649359} 
+\date{28/11/2019}
+
+\begin{document}
+\lstset{breaklines=true}
+	
+\maketitle
+\tableofcontents
+\clearpage
+
+\section{Overview}
+Following sections will describe two different crypto libraries for two different programming languages, Java and Python.
+
+\section{Java}
+The first programming language we are going to describe is Java. The two libraries used are $Javax.crypto$ and $Apache.commons.crypto$.
+\subsection{Javax.Crypto}
+This is the default crypto-library for the Java Platform and provides the classes and interfaces for cryptographic operations used by other libraries.
+The license type change according to the SDK type: Oracle OpenJDK is under GPLv2 License while Oracle JDK requires a commercial license in production.
+\paragraph{Encryption}
+This is an example of encryption for a given array of bytes.\newline
+First we create an initalization vector $iv\_spec$ to be used later for the cipher's algorithm.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+IvParameterSpec iv_spec = new IvParameterSpec (iv);
+\end{lstlisting}
+$IvParameterSpec$ constructor takes as input an array of bytes($iv$) and returns an object of class $IvParameterSpec$ that specify the Initalization Vector.\newline
+Now we generate the secret key $secret\_key\_spec$.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+SecretKeySpec secret_key_spec = new SecretKeySpec(secret_key, "AES");
+\end{lstlisting}
+$SecretKeySpec$ constructor takes in input the user's secret key ($secret\_key$) and the algorithm to be associated with it and returns an object of class $SecretKeySpec$ that specify the secret key used by the cipher.\newline
+With the key and the iv we can initialize the cipher for the encryption.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
+cipher.init(Cipher.ENCRYPT_MODE, secret_key_spec, iv_spec);
+return cipher.doFinal(to_encrypt);
+\end{lstlisting}
+$Cipher.getInstance$ generates a cipher for the given type "algorithm/mode/padding" in this case AES is the algorithm, CBC the operating mode and PKCS5PADDING the type of padding used. Then we initialize the cipher with the key and iv we previously created and set the cipher mode for the encryption. When the cipher is initialized correctly we can start the ecnryption with the $.doFinal()$ method that takes as input the plaintext's bytes and returns a sequence of bytes.
+\paragraph{Decryption}
+The operations for the decryption are pretty similar to the encryption's ones.
+The only difference is in the cipher configuration where we change ENCRYPT\_MODE with DECRYPT\_MODE
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+cipher.init(Cipher.DECRYPT_MODE, secret_key_spec, iv_spec);
+\end{lstlisting}
+
+\subsection{Apache.Commons.crypto}
+The Apache Commons is a project of the Apache Software Foundation with he purpose of provide reusable, open source Java software.
+\paragraph{Encryption}
+The procedure starts exactly as before, with the creation of IV and secretkey.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+IvParameterSpec iv_spec = new IvParameterSpec(iv);
+SecretKeySpec secret_key_spec = new SecretKeySpec(secret_key, "AES");
+\end{lstlisting}
+Then we initialize the properties for the Cipher.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+Properties properties = new Properties();
+properties.setProperty(CryptoCipherFactory.CLASSES_KEY, CipherProvider.OPENSSL.getClassName());
+CryptoCipher cipher = Utils.getCipherInstance("AES/CBC/PKCS5Padding", properties);
+cipher.init(Cipher.ENCRYPT_MODE, secret_key_spec, iv_spec);
+\end{lstlisting}
+Class CryptoCipher takes in input the same "algorithm/mode/padding" string as Javax.crypto and the properties we defined for it. \newline 
+Method $.setProperty$ initializes a pair key-value: $CLASS\_KEY$ value must be a class that implements the CryptoCipher interface: $OPENSSL$. At last we execute the encryption procedure.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+cipher.doFinal(to_encrypt, 0, to_encrypt.length, out, 0);
+return out;
+\end{lstlisting}
+Method $.doFinal()$ for $CryptoCipher$ class
+takes as parameters the input (in bytes), the starting index and its length plus the output array in which will be copied returning the number of bytes generated.
+\paragraph{Decryption}
+Also in this library the decryption procedure change only on the cipher's configuration phase.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+cipher.init(Cipher.DECRYPT_MODE, secret_key_spec, iv_spec);
+\end{lstlisting}
+\subsection{Comparison}
+Using the following code we demonstrated that the two libraries are interchangeable without any problem. According to usage simplicity the integrated $javax.crypto$ library is recommended.
+\lstinputlisting[language=java]{hw4-1649359.java}
+\clearpage
+
+\section{Python}
+The two libraries used in Python are $pycrypto$ and $pyca/cryptography$ both open source projects. In python, API are much easier than java, reducing the programmer job to few lines of code.
+\subsection{Pycrypto}
+First of all we must import the cipher for the algorithm we want to use from the library, in our case AES.
+\begin{lstlisting}[language=Python,backgroundcolor = \color{lightgray}]
+from Crypto.Cipher import AES
+\end{lstlisting} For both encryption and decryption the procedure is the same: create the cipher with function $new$ giving as input the key, the operating mode, and the initialization vector. Key can be 16/24/32 bits long while the IV must be 16 bits long. Then execute the encrypt/decrypt function.
+
+\paragraph{Encryption}
+\begin{lstlisting}[language=Python,backgroundcolor = \color{lightgray}]
+aes = AES.new(key, AES.MODE_CBC, iv)
+ciphertext = aes.encrypt(data)
+\end{lstlisting}
+\paragraph{Decryption}
+\begin{lstlisting}[language=Python,backgroundcolor = \color{lightgray}]
+aes = AES.new(key, AES.MODE_CBC, iv)
+plaintext = aes.decrypt(ciphertext)
+\end{lstlisting}
+
+
+\subsection{Pyca/cryptography}
+The $cryptography$ library was originally designed to support multiple backends and for this reason this kind of objects provide multiple ciphers used for encryption and decryption. Lets start by importing the default backend and the modules we will need for cryptography such as algorithms, modes and ciphers primitives.
+\begin{lstlisting}[language=Python,backgroundcolor = \color{lightgray}]
+from cryptography.hazmat.backends import default_backend
+from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+\end{lstlisting}
+Initialize cipher.
+\begin{lstlisting}[language=Python,backgroundcolor = \color{lightgray}]
+backend = default_backend()
+cipher = Cipher(algorithms.AES(key), modes.CBC(iv), backend=backend)
+\end{lstlisting}
+Key and IV length constraints are the same as previous library. The backend has the purpose to provide methods for using ciphers for encryption and decryption.
+\paragraph{Encryption}
+\begin{lstlisting}[language=Python,backgroundcolor = \color{lightgray}]
+encryptor = cipher.encryptor()
+ciphertext = encryptor.update(data) + encryptor.finalize()
+\end{lstlisting}
+\paragraph{Decryption}
+\begin{lstlisting}[language=Python,backgroundcolor = \color{lightgray}]
+decryptor = cipher.decryptor()
+plaintext = decryptor.update(ciphertext) + decryptor.finalize()
+\end{lstlisting}
+Encryption and decryption phases differ only for the use of encryptor for the first and decryptor for the second. When calling encryptor() or decryptor() on a Cipher object the result will conform to the CipherContext interface. We then call update(data) with data until we have fed everything into the context. Once that is done we call finalize() to finish the operation and obtain the remainder of the data.
+\subsection{Comparison}
+In python too both libraries are interchangeable. The pyca/cryptography though is the most up-to-date between the two.
+
+\lstinputlisting[language=python]{hw4-1649359.py}
+
+
+
+
+\end{document}
