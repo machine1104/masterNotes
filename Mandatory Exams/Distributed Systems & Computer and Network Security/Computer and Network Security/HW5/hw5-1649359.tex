@@ -1,0 +1,58 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+\usepackage{xcolor}
+
+\usepackage{float}
+\title{Ro-Sham-Bo \\ HW5 - CNS Sapienza}
+
+\author{Edoardo Puglisi 1649359} 
+\date{5/12/2019}
+
+\begin{document}
+\lstset{breaklines=true}
+	
+\maketitle
+\tableofcontents
+\clearpage
+
+\section{Overview}
+Design a protocol that guarantee the perfect execution of the "Rock-Paper-Scissor" game between two users in a network composed only by them two (no men-in-the-middle attacks). The users will cheat if the protocol will admit a way to do it.
+
+\section{Protocol explanation}
+
+\subsection{Initialization}
+Both users have a public key $P_i$ and a secret key $K_i$. When the game starts the two users exchange their public keys for future authentication. Both start with score = (0,0).
+
+\subsection{The Game}
+Alice (A) will be the one who started the game, while Bob (B) is her adversary. On every turn A will generate a secret session key $S_i$.
+\begin{enumerate}
+    \item A chooses a move: $move_A$
+    \item A $\rightarrow$ B: $M_{A1} =[K_A(S_A(move_A) + t_i + score)]$ \newline
+    A encrypts her move with her session key and attach the score plus a timestamp, then encrypts all with her secret key (can be decrypted with public key).
+    \item B $\rightarrow$ A: $M_{B1} = [K_B(M_{A1}), K_B(move_B + score + t_{i+1}))]$ \newline
+    B encrypts with his secret key the previous message and his move attached with augmented timestamp and score.
+    \item A $\rightarrow$ B: $M_{A2} = [S_A, newscore, K_A(M_{B1}[1]),M_{B1}[0]]$ \newline
+    At this time A has all the necessary to understand who won. She send to B the new score, her session key so B can verify too and the proof of the new score: her move "accepted" by B (encrypted with $K_B$) and the move of B "accepted" by her.
+    \item B $\rightarrow$ A: $M_{B2} = [newscore,M_{A2}[2],M_{A1}]$ \newline
+    B checks the score and send his proof of it: A's move and his move accepted by her.
+\end{enumerate}
+
+At next round score = newscore. Reached 2 out of 3 wins the game ends.
+
+\subsection{Cheating control}
+\paragraph{\textbf{Anticipate move:}} the first move is sent encrypted so B can't cheat on it.
+\paragraph{\textbf{Cheat on score:}} none of the user can cheat on score because at every step (in every message) the score is send as parameter and "accepted" when the receiver send the answer back.
+Eg. at step 2, A sends $score$ to B that accept it as real result when at step 3 he sends back the same $score$ encrypted with his secret key.
+\paragraph{\textbf{No repudiation:}} every move is encrypted with the private key of the owner: none can create a ciphertext equal to it without the personal secret key.
+\paragraph{\textbf{No message repetition:}} every message (ciphertext) is the result of a message with a timestamp attached on it. This guarantee that messages can't be resend on future rounds.
+
+\end{document}
