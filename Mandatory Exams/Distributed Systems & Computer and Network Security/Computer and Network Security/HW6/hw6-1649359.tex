@@ -1,0 +1,107 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+\usepackage{xcolor}
+
+\usepackage{float}
+\title{Public key cryptography in OpenSSl \\ HW6 - CNS Sapienza}
+
+\author{Edoardo Puglisi 1649359} 
+\date{12/12/2019}
+
+\begin{document}
+\lstset{breaklines=true}
+	
+\maketitle
+\tableofcontents
+\clearpage
+
+\section{Overview}
+The main purpose of this paper is to define the OpenSSL workflow for generating key-pairs and certificates, converting certificates and digital signing documents in particular using RSA and DSA.
+
+\section{Generating keys}
+In OpenSSL secret keys can be generated with $genpkey$ command. The use of it change according on the algorithm used. For RSA just set as parameters algorithm and output file:
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+openssl genpkey -algorithm RSA -out pkeyRSA.pem
+\end{lstlisting}
+Other key generation option can be set such as the number of bits of generated key (deafult 2048) or the public key exponent value.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+-----BEGIN PRIVATE KEY-----
+MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBA...
+-----END PRIVATE KEY-----
+\end{lstlisting}
+For DSA algorithm the procedure is a bit diffent. First we must define the set of parameters for the key generator:
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+openssl genpkey -genparam -algorithm DSA -out dsap.pem
+\end{lstlisting}
+then create the key from the previously generated parameters set.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+openssl genpkey -paramfile dsap.pem -out pkeyDSA.pem
+\end{lstlisting}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+-----BEGIN PRIVATE KEY-----
+MIIBSgIBADCCASsGByqGSM44BAEwggEeAoGBAM...
+-----END PRIVATE KEY-----
+\end{lstlisting}
+Given this new fileS we can extract the public keys:
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+openssl rsa -pubout -in pkeyRSA.pem -out pubRSA.pem
+openssl dsa -pubout -in pkeyDSA.pem -out pubDSA.pem
+\end{lstlisting}
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+-----BEGIN PUBLIC KEY-----
+MIIBtzCCASsGByqGSM44BAEwggEeAoGBAM1kgabPEgZe0Ijj....
+-----END PUBLIC KEY-----
+\end{lstlisting}
+
+\section{Generating and verifying X.509 certificate}
+To generate a selfsigned certificate (X.509) we run the command:
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+openssl req -new -x509 -sha256 -days 365 -key pkeyRSA.pem -out certificate.crt
+\end{lstlisting}
+It takes as argument the validity and the private key we generated previously. You will be asked to insert certificate attributes such as location, organization name and common name.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+Country Name (2 letter code) []:IT
+State or Province Name (full name) []:Italy
+Locality Name (eg, city) []:Roma
+Organization Name (eg, company) []:Sapienza
+Organizational Unit Name (eg, section) []:CNS
+Common Name (eg, fully qualified host name) []:Diag
+Email Address []:
+\end{lstlisting}
+To verify the self-signed certificate:
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+openssl verify -CAfile certificate.crt certificate.crt
+------------
+certificate.crt: OK
+\end{lstlisting}
+
+\section{Signing and verifying a document}
+To sign a document use command $dgst$ as following:
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+openssl dgst -sign pkeyRSA.pem -out signature input.txt
+\end{lstlisting}
+This command compute the sha256 of the input file and sign it with the private key. To verify the document given the public key instead:
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+openssl dgst -verify pubRSA.pem -signature signature input.txt 
+------------
+Verified OK
+\end{lstlisting}
+
+\section{Converting certificate formats}
+The same command used to create a selfsigned X.509 certificate can be used to convert certificates in different formats.
+\begin{lstlisting}[backgroundcolor = \color{lightgray}]
+openssl x509 -in certificate.crt -out converted-certificate.der -outform DER
+\end{lstlisting}
+In this example the previously created certificated is converted in DER format.
+
+
+\end{document}
