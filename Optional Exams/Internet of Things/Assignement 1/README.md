@@ -17,7 +17,7 @@ The python script *device* simulates a weather station that sends random integer
 
 The device is connected to the cloud through a mqtt connection with on specific topic. In the same way on Google console it has been created a subscription channel on the same topic in PUSH mode to directly re-send messages as soon as received from the cloud.
 
-For this example  i used a third-party webservice as dashboard to display the messages (https://iot-assignement1.free.beeceptor.com).
+For this example  i used a third-party webservice as dashboard to display the messages (https://beeceptor.com/console/iot-assignement1).
 Unfortunatly Google IOT Console encodes messages in base 64 and i cant decode them from the beeceptop webpage.
 
 
