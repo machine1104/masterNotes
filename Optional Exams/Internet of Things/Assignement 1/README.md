@@ -22,8 +22,7 @@ Unfortunatly Google IOT Console encodes messages in base 64 and i cant decode th
 
 
 
-**LIVE DEMO**
-
+**LIVE DEMO**  
 [DEMO](https://youtu.be/LnP78IYBRTE)
 
 **HACKSTER BLOG**  
