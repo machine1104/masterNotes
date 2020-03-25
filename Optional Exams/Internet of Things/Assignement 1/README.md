@@ -26,5 +26,8 @@ Unfortunatly Google IOT Console encodes messages in base 64 and i cant decode th
 
 [DEMO](https://youtu.be/LnP78IYBRTE)
 
+**HACKSTER BLOG**
+[link](https://www.hackster.io/machine1104/simulate-weather-station-with-google-iot-691bba)
+
 
 
