@@ -37,12 +37,15 @@ con fec0:affe::1 1885
 ```
 Note to change RIOT directory on Makefile according to your file system!
 
-Use command ```start <topic-name>``` to send messages to the broker that will appear on https://beeceptor.com/console/iot-assignement
+Use command ```start telemetry``` to send messages to the broker that will appear on https://beeceptor.com/console/iot-assignement
 
 
 **PROJECT DESCRIPTION**
 
 Thi project explain how the same device of [this](https://github.com/machine1104/masterNotes/tree/master/Optional%20Exams/Internet%20of%20Things/Assignement%201) experiment run on RIOT environment. Given the fact that iot nodes are low-powered devices and use MQTTSN as protocol i had to create a transparent gateway to "transform" MQTTSN messages to MQTT ones.
+
+**NOTE**
+I was able to create the .elf file and load the firmaware on iot-lab,but didn't succed to make ti connect to my local broker.
 
 **LIVE DEMO**  
 [DEMO](https://www.youtube.com/watch?v=QhEj7YxJJgA)
