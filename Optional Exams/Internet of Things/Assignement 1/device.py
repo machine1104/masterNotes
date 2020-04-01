@@ -94,11 +94,11 @@ class Device(object):
 
 mqtt_url = "mqtt.googleapis.com"
 mqtt_port = 8883
-mqtt_topic = "/projects/iot-assignement1/topics/topic"
-project_id   = "iot-assignement1"
+mqtt_topic = "/projects/iot-assignement/topics/topic"
+project_id   = "iot-assignement"
 cloud_region = "europe-west1"
-registry_id  = "default"
-device_id    = "device1"
+registry_id  = "default_registry"
+device_id    = "device"
 root_ca = 'roots.pem'
 public_crt = 'rsa_public.pem'
 private_key_file = 'rsa_private.pem'
