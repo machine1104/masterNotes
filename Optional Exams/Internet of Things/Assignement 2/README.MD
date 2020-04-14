@@ -51,7 +51,7 @@ I was able to create the .elf file and load the firmaware on iot-lab,but didn't 
 [DEMO](https://www.youtube.com/watch?v=QhEj7YxJJgA)
 
 **HACKSTER BLOG**  
-[link](https://www.hackster.io/machine1104/riot-weather-station-simulation-3acda8)
+[LINK](https://www.hackster.io/machine1104/riot-weather-station-simulation-3acda8)
 
 
 
