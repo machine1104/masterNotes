@@ -1,0 +1,5 @@
+version: '3'
+services:
+  soap:
+    build: .
+    ports: '9999':'7777'
