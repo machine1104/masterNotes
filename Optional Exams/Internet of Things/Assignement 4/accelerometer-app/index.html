@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <title>Accelerapp</title>
+    
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+   <script src="main.js"></script>
+  </head>
+
+  <body>
+    <nav
+      class="navbar navbar-expand-lg navbar-light"
+      style="box-shadow: 5px 10px 18px #888888; background: #ac0d20;"
+    >
+      <a
+        class="navbar-brand"
+        href="#home"
+        style="fontweight: bold; color: white; font-size: 30px;"
+      >
+        Accelerapp
+      </a>
+    </nav>
+    <div class="row justify-content-center" style="margin-top: 30px;">
+      <div
+        style="
+          color: #ac0d20;
+          border-radius: 25px;
+          box-shadow: 5px 10px 18px #888888;
+          font-family: georgia, garamond, serif;
+          overflow: hidden;
+          width: 300px;
+        "
+      >
+        <div
+          class="col justify-content-center"
+          style="
+            margin-left: 25px;
+            margin-right: 25px;
+            margin-top: 25px;
+            margin-bottom: 25px;
+          "
+        >
+          <div class="row">
+            <b>Params:</b>
+          </div>
+
+          <div class="row" style="margin-top: 25px;" id="x_reading">xAxis: 0 m/s^2</div>
+          <div class="row" id="y_reading">yAxis: 0 m/s^2</div>
+          <div class="row" id="z_reading">zAxis: 0 m/s^2</div>
+
+          <div class="row" style="margin-top: 25px;"id="activity">no activity detected.</div>
+          <button onclick="getLastMovement()">GET LAST MOVEMENT</button>
+          <div class="row" style="margin-top: 25px;"id="results"></div>  
+
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
