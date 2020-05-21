@@ -23,7 +23,7 @@ This simple project gets sensor values from a mobile device (smartphone) and sen
 [DEMO](https://youtu.be/vwM1B99Ws3Q)
 
 **HACKSTER BLOG**  
-[LINK](hhttps://www.hackster.io/machine1104/movement-recognition-with-smartphone-accellerometer-4b3cf1)
+[LINK](https://www.hackster.io/machine1104/movement-recognition-with-smartphone-accellerometer-4b3cf1)
 
 
 
