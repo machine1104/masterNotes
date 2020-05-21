@@ -20,7 +20,7 @@ Access the webpage from an Android smartphone and see the magic.
 This simple project gets sensor values from a mobile device (smartphone) and send data to the firebase database. In the same time the calculation is done locally (javascript) and in the cloud (Firebase Functions) to recognize user movement according to magnitude.
 
 **LIVE DEMO**  
-[DEMO](https://youtu.be/HNld0tsxcqM)
+[DEMO](https://youtu.be/vwM1B99Ws3Q)
 
 **HACKSTER BLOG**  
 [LINK](hhttps://www.hackster.io/machine1104/movement-recognition-with-smartphone-accellerometer-4b3cf1)
