@@ -1,11 +1,12 @@
 version: "3.8"
 services:
-    broker:
-        build: ./broker
-        ports:
-            - "61616:61616"
-            - "8161:8161"
-    #servant:
-    #    build: ./servant
-    #    links:
-    #        - broker    
+   broker:
+    build: ./broker
+    ports:
+      - "61616:61616"
+      - "8161:8161"
+   
+   servant:
+    build: ./servant
+    links:
+      - broker

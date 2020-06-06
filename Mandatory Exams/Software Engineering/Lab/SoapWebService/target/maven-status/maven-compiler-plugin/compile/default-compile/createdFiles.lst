@@ -1,0 +1,9 @@
+it\sapienza\soapwebservice\StudentAdapter.class
+it\sapienza\soapwebservice\WSInterface.class
+it\sapienza\soapwebservice\Student.class
+it\sapienza\soapwebservice\WSImpl.class
+it\sapienza\soapwebservice\StudentMap$StudentEntry.class
+it\sapienza\soapwebservice\StudentMapAdapter.class
+it\sapienza\soapwebservice\Server.class
+it\sapienza\soapwebservice\StudentImpl.class
+it\sapienza\soapwebservice\StudentMap.class

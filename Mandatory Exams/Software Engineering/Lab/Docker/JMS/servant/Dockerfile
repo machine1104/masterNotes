@@ -1,5 +1,5 @@
 FROM openjdk:8-alpine
 RUN apk --no-cache add curl
-COPY ./JMSServant1.0SNAPSHOTjarwithdependencies.jar /usr/app/
+COPY ./JMSServant-1.0-SNAPSHOT-jar-with-dependencies.jar /usr/app/
 WORKDIR /usr/app
-ENTRYPOINT ["java", "-cp", "JMSServant1.0SNAPSHOTjarwithdependencies.jar", "it.sapienza.softeng.jmsservant.StockMarketServer"]
+ENTRYPOINT ["java", "-cp", "JMSServant-1.0-SNAPSHOT-jar-with-dependencies.jar", "server.StockMarketServer"]

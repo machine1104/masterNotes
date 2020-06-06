@@ -1,0 +1,10 @@
+client\gui\CompraFrame.class
+client\gui\QuotazioniTableModel.class
+client\AzioniJMSListener.class
+client\gui\CompraListener.class
+client\gui\AzioniListener.class
+client\CompraJMSManager.class
+client\gui\AzioniFrame.class
+client\session\Utente.class
+client\StockMarketClient.class
+client\dto\Quotazione.class
