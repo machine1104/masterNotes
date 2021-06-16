@@ -7,4 +7,4 @@ These notes are free, but I don't refuse donations
 
 | PAYPAL        | BITCOIN           | ETHEREUM        |
 | :-------------: |:-------------:|:-----:|
-| ![pp-qr](https://i.imgur.com/8dygmUnm.png) | ![btc-qr](https://i.imgur.com/YNKnDBKm.png) | ![eth-qr](https://i.imgur.com/i1jojCfm.png) |
+| ![pp-qr](qr-pp.png) | ![btc-qr](qr-btc.png) | ![eth-qr](qr-eth.png) |
