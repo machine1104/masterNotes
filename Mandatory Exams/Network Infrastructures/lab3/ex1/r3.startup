@@ -1,0 +1,2 @@
+/etc/init.d/networking restart
+ip route add default via 10.0.0.4

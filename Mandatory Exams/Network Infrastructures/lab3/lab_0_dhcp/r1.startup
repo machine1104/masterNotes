@@ -1,0 +1,5 @@
+# Interfaces are configured through /etc/network/interfaces file. It REQUIRES the networking daemon to be restarted
+/etc/init.d/networking restart
+
+# This starts the dhcp server at boot
+/etc/init.d/isc-dhcp-server start

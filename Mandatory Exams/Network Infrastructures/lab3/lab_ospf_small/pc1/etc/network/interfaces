@@ -1,0 +1,4 @@
+auto eth0 
+iface eth0 inet static
+	address 10.10.1.100/24
+	gateway 10.10.1.1

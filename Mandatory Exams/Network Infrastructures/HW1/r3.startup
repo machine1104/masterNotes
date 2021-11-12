@@ -1,0 +1,2 @@
+/etc/init.d/networking restart
+ip route add default via 1.1.10.18

@@ -1,0 +1,4 @@
+/etc/init.d/networking restart
+ip route add 20.50.10.0/25 via 1.1.10.16
+ip route add 10.0.3.96/27 via 1.1.10.19
+ip route add 10.0.4.96/27 via 1.1.10.21

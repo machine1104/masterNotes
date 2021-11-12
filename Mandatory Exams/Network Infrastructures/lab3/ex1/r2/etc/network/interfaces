@@ -1,0 +1,7 @@
+auto eth0
+iface eth0 inet static
+    address 10.0.0.3/31
+    
+auto eth1
+iface eth1 inet static
+    address 10.0.0.4/31
