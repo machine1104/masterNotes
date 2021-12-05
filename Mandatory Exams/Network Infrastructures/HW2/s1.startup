@@ -1,0 +1,18 @@
+/etc/init.d/networking restart
+/etc/init.d/ssh restart
+echo '160.80.103.8 s2'>>/etc/hosts
+
+mkdir /home/ssh_user/
+useradd ssh_user -d /home/ssh_user
+chown ssh_user:ssh_user /home/ssh_user
+echo -e 'password\npassword\n' | passwd ssh_user
+
+mkdir /home/ssh_user/.ssh
+touch /home/ssh_user/.ssh/authorized_keys
+chown ssh_user:ssh_user /home/ssh_user/.ssh/
+chmod 700 /home/ssh_user/.ssh
+chown ssh_user:ssh_user /home/ssh_user/.ssh/authorized_keys
+cat /shared/id_rsa.pub >> /home/ssh_user/.ssh/authorized_keys
+chmod 600 /home/ssh_user/.ssh/authorized_keys
+sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config && service ssh restart
+

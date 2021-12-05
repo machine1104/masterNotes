@@ -1,0 +1,5 @@
+auto eth0
+iface eth0 inet static
+    address 160.80.103.8/27
+    gateway 160.80.103.1
+

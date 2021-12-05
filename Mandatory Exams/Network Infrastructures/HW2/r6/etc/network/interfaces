@@ -1,0 +1,7 @@
+auto eth0
+iface eth0 inet static
+    address 1.0.3.15/31
+    
+auto eth1
+iface eth1 inet static
+    address 192.168.178.1/24
