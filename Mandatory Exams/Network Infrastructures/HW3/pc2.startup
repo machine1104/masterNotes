@@ -1,0 +1,17 @@
+/etc/init.d/networking restart
+echo '192.168.50.250 s1'>>/etc/hosts
+echo '192.168.50.100 pc1'>>/etc/hosts
+echo '100.0.1.100 pc2'>>/etc/hosts
+echo '101.0.1.15 r9'>>/etc/hosts
+
+# PUNTO 5
+mkdir /root/.ssh/
+cp /shared/id_rsa /root/.ssh/
+chmod 600 /root/.ssh/id_rsa
+
+# PUNTO 9
+mkdir -p /dev/net
+mknod /dev/net/tun c 10 200
+chmod 600 /dev/net/tun
+chmod 600 /root/myclient.key
+openvpn root/client.conf

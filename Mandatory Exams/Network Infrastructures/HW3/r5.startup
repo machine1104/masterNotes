@@ -1,0 +1,5 @@
+/etc/init.d/networking restart
+/etc/init.d/quagga restart
+
+# PUNTO 7
+iptables -A FORWARD -p tcp --dport 22 -j DROP

@@ -6,13 +6,15 @@ ssh -4 -NR 9000:localhost:8000 ssh_user@s2 -f -N
 
 EX7
 su pc2:
-pkill -9 ssh
 ssh -4 -NL 10000:localhost:9000 ssh_user@s2 -f -N
 
 
 EX8
+su s2:
+tcpdump -i eth0 -w /shared/capture.pcap
+
+su s1:
+nc -l -p 8000
+
 su pc2:
 nc localhost 10000
-su s1:
-tcpdump -i eht0 -w /shared/capture.pcap
-nc -l -p 8000

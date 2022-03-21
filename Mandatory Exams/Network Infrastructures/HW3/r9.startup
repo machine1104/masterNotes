@@ -1,0 +1,23 @@
+/etc/init.d/networking restart
+/etc/init.d/quagga restart
+
+iptables -t nat -F
+iptables -t filter -F
+
+# PUNTO 3
+iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE
+
+# PUNTO 4
+iptables -A FORWARD -i eth1 -m state --state NEW -j DROP
+iptables -A FORWARD -m state --state RELATED,ESTABLISHED -j ACCEPT
+
+# PUNTO 5
+iptables -t nat -A PREROUTING -i eth1 -p tcp --dport 22 -j DNAT --to-destination 192.168.50.250:22
+iptables -I FORWARD -i eth1 -p tcp --dport 22 -j ACCEPT
+
+# PUNTO 9
+mkdir -p /dev/net
+mknod /dev/net/tun c 10 200
+chmod 600 /dev/net/tun
+chmod 600 /root/myserver.key
+openvpn root/server.conf

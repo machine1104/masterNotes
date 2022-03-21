@@ -1,0 +1,4 @@
+/etc/init.d/networking restart
+echo '192.168.50.250 s1'>>/etc/hosts
+echo '192.168.50.100 pc1'>>/etc/hosts
+echo '100.0.1.100 pc2'>>/etc/hosts
